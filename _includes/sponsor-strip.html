@@ -1,0 +1,40 @@
+{%- comment -%}
+  Sponsor logos, highest tier first. Hidden completely while sponsors.yml is empty.
+  A sponsor with a logo shows the logo (alt text = its name); without one, just the name.
+{%- endcomment -%}
+{%- assign all_sponsors = site.data.sponsors -%}
+{%- if all_sponsors and all_sponsors.size > 0 -%}
+{%- assign tiers_high_first = site.data.sponsor_tiers.tiers | sort: "min" | reverse -%}
+<section class="section sponsor-strip" aria-labelledby="sponsors-heading">
+  <div class="container">
+    <h2 id="sponsors-heading" class="section__title">Our sponsors</h2>
+    <p class="section__lede">Thank you to the businesses and families who make our season possible.</p>
+    <ul class="sponsor-list">
+      {%- for tier in tiers_high_first -%}
+        {%- assign tier_sponsors = all_sponsors | where: "tier", tier.name -%}
+        {%- for sp in tier_sponsors %}
+        <li class="sponsor sponsor--{{ tier.name | slugify }}">
+          {%- capture sponsor_body -%}
+            {%- if sp.logo.size > 0 -%}
+              {%- assign logo_found = site.static_files | where: "path", sp.logo | first -%}
+              {%- if logo_found -%}
+                <img src="{{ sp.logo }}" alt="{{ sp.name | escape }}" loading="lazy" decoding="async">
+              {%- else -%}
+                <span class="sponsor__name">{{ sp.name }}</span>
+              {%- endif -%}
+            {%- else -%}
+              <span class="sponsor__name">{{ sp.name }}</span>
+            {%- endif -%}
+          {%- endcapture -%}
+          {%- if sp.url.size > 0 -%}
+            <a href="{{ sp.url }}" rel="noopener sponsored">{{ sponsor_body }}<span class="visually-hidden"> (opens {{ sp.name }} website)</span></a>
+          {%- else -%}
+            {{ sponsor_body }}
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+{%- endif -%}

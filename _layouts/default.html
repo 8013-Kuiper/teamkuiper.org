@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- assign s = site.data.site -%}
+  {%- capture tagline %}{% include tagline.html %}{% endcapture -%}
+  {%- if page.url == '/' -%}
+    {%- capture full_title %}{{ s.team_name }} #{{ s.team_number }} — {{ s.program }} robotics, {{ s.location }}{% endcapture -%}
+  {%- else -%}
+    {%- capture full_title %}{{ page.title }} — {{ s.team_name }} #{{ s.team_number }}{% endcapture -%}
+  {%- endif -%}
+  {%- assign page_description = page.description | default: tagline -%}
+
+  <title>{{ full_title | strip }}</title>
+  <meta name="description" content="{{ page_description | strip | escape }}">
+  <meta name="theme-color" content="#050718">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="icon" type="image/png" href="/assets/images/brand/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ s.team_name }} #{{ s.team_number }}">
+  <meta property="og:title" content="{{ full_title | strip | escape }}">
+  <meta property="og:description" content="{{ page_description | strip | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/images/brand/logo-512.png' | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Fonts: the only external request this site makes (Google Fonts, no account or cookies). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  {% include icons.html %}
+  {% include header.html %}
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>

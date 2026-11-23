@@ -1,0 +1,24 @@
+{%- comment -%} One wishlist row. Parameter: w (an entry from wishlist.yml). Funded items stay visible, checked off. {%- endcomment -%}
+{%- assign w = include.w -%}
+<li class="wish{% if w.funded %} wish--funded{% endif %}">
+  <span class="wish__check" aria-hidden="true">{% if w.funded %}{% include icon.html name="check" %}{% endif %}</span>
+  <div class="wish__main">
+    <p class="wish__item">
+      {%- if w.url.size > 0 %}<a href="{{ w.url }}" rel="noopener">{{ w.item }}</a>{% else %}{{ w.item }}{% endif -%}
+      <span class="badge badge--{{ w.priority | default: 'low' }}">{{ w.priority | default: "low" | capitalize }} priority</span>
+      {%- if w.funded %}<span class="badge badge--funded">Funded</span>{% endif -%}
+    </p>
+    {%- if w.why.size > 0 %}<p class="wish__why">{{ w.why }}</p>{% endif -%}
+    <p class="wish__meta">
+      {%- if w.vendor.size > 0 %}From {{ w.vendor }} · {% endif -%}
+      {%- if w.price and w.price > 0 %}{% include money.html amount=w.price %}{% else %}Price coming soon{% endif -%}
+    </p>
+  </div>
+  <div class="wish__action">
+    {%- if w.funded %}
+      <span class="wish__done">Thank you!</span>
+    {%- else %}
+      <a class="btn btn--small btn--outline" href="{{ site.data.site.donate_url }}" rel="noopener">Sponsor this part<span class="visually-hidden">: {{ w.item }}</span></a>
+    {%- endif %}
+  </div>
+</li>

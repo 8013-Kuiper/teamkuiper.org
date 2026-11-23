@@ -1,0 +1,63 @@
+---
+layout: default
+title: Support Us
+permalink: /support/
+description: Donate to Team Kuiper (tax-deductible through Hack Club), sponsor a specific robot part, or become a team sponsor.
+---
+{%- assign s = site.data.site -%}
+<header class="page-head page-head--support">
+  <div class="container">
+    <p class="eyebrow">Support Team Kuiper</p>
+    <h1>Help us compete</h1>
+    <p class="page-head__lede">We're a student-run team. Your gift pays for parts, tournament fees and the outreach events that bring more kids into robotics.</p>
+    <p><a class="btn btn--primary btn--xl" href="{{ s.donate_url }}" rel="noopener">{% include icon.html name="heart" %}Donate now</a></p>
+  </div>
+</header>
+
+<section class="section" aria-labelledby="tax-heading">
+  <div class="container grid-2">
+    <div>
+      <h2 id="tax-heading" class="section__title">Your gift is tax-deductible</h2>
+      <p>Team Kuiper is fiscally sponsored by <strong>Hack Club</strong> (The Hack Foundation), a registered 501(c)(3) nonprofit. That means donations made through the button above are tax-deductible to the extent allowed by law, and you'll get an automatic receipt by email.</p>
+      <p><a class="btn btn--primary" href="{{ s.donate_url }}" rel="noopener">{% include icon.html name="heart" %}Donate online</a></p>
+    </div>
+    <div class="card card--outline">
+      <h3 class="card__title">Prefer to send a check?</h3>
+      <p>Make it payable to <strong>{{ s.check_donations.payable_to }}</strong> and mail it to:</p>
+      <address class="address">{{ s.check_donations.mail_to | strip | newline_to_br }}</address>
+      <p>{{ s.check_donations.note }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint" aria-labelledby="wishlist-heading">
+  <div class="container">
+    <h2 id="wishlist-heading" class="section__title">Our wishlist</h2>
+    <p class="section__lede">Want your gift to go to something specific? Pick a part. When it's paid for, we check it off.</p>
+    {% include progress-bar.html %}
+    <ul class="wish-list">
+      {%- for w in site.data.wishlist %}
+      {% include wishlist-item.html w=w %}
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="tiers-heading">
+  <div class="container">
+    <h2 id="tiers-heading" class="section__title">Sponsor tiers</h2>
+    <p class="section__lede">Each tier includes all the perks of the tiers below it.{% if site.data.sponsor_tiers.note %} {{ site.data.sponsor_tiers.note }}{% endif %}</p>
+    <ul class="tier-grid">
+      {%- assign previous_name = "" -%}
+      {%- for t in site.data.sponsor_tiers.tiers %}
+      {% include tier-card.html tier=t previous=previous_name %}
+      {%- assign previous_name = t.name -%}
+      {%- endfor %}
+    </ul>
+    <p class="tier-cta">
+      <a class="btn btn--primary btn--large" href="mailto:{{ s.email }}?subject=Becoming%20a%20Team%20Kuiper%20sponsor">{% include icon.html name="mail" %}Become a sponsor</a>
+    </p>
+  </div>
+</section>
+
+{% include sponsor-strip.html %}

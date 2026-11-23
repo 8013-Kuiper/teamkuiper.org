@@ -1,0 +1,14 @@
+{%- comment -%} One sponsor tier. Parameters: tier (entry), previous (name of the tier below, or blank). {%- endcomment -%}
+{%- assign t = include.tier -%}
+<li class="tier tier--{{ t.name | slugify }}">
+  <h3 class="tier__name">{{ t.name }}</h3>
+  <p class="tier__price">{% include money.html amount=t.min %}<span>+</span></p>
+  <ul class="tier__perks">
+    {%- if include.previous.size > 0 %}
+    <li class="tier__inherit">Everything in {{ include.previous }}, plus:</li>
+    {%- endif %}
+    {%- for perk in t.perks %}
+    <li>{% include icon.html name="check" %}<span>{{ perk }}</span></li>
+    {%- endfor %}
+  </ul>
+</li>

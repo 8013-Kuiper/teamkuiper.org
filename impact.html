@@ -1,0 +1,30 @@
+---
+layout: default
+title: Impact
+permalink: /impact/
+description: "How Team Kuiper gives back: hosting Long Island FTC qualifiers, mentoring younger teams and sharing robotics with our community."
+---
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">Beyond the competition field</p>
+    <h1>Our impact</h1>
+    <p class="page-head__lede">Robotics is better when more people get to try it. Here's how we share it.</p>
+  </div>
+</header>
+
+{% include stats-band.html %}
+
+<section class="section" aria-label="What we do">
+  <div class="container">
+    <ul class="card-grid">
+      {%- for item in site.data.impact.items %}
+      <li class="card reveal">
+        <h2 class="card__title">{{ item.title }}</h2>
+        <p>{{ item.text | strip }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{% include donate-cta.html %}

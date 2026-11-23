@@ -1,0 +1,72 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+{%- assign s = site.data.site -%}
+{%- capture tagline %}{% include tagline.html %}{% endcapture -%}
+{%- assign hero_found = site.static_files | where: "path", s.hero_image | first -%}
+{%- assign hero_alt = s.hero_alt | default: "" -%}
+{%- if hero_alt == "" or hero_alt contains "TODO" -%}{%- assign hero_alt = "Team Kuiper at a competition" -%}{%- endif -%}
+
+<section class="hero">
+  {%- if hero_found %}
+  <img class="hero__img" src="{{ s.hero_image }}" alt="{{ hero_alt | escape }}" fetchpriority="high" decoding="async">
+  {%- else %}
+  <div class="hero__stars" aria-hidden="true"></div>
+  {%- endif %}
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <p class="eyebrow">{{ s.program }} · {{ s.location }}</p>
+    <h1>{{ s.team_name }} <span class="hero__num">#{{ s.team_number }}</span></h1>
+    <p class="hero__tagline">{{ tagline | strip }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--large" href="{{ s.donate_url }}" rel="noopener">{% include icon.html name="heart" %}Donate</a>
+      <a class="btn btn--ghost btn--large" href="/robots/">See our robot {% include icon.html name="arrow" %}</a>
+    </div>
+  </div>
+  {%- unless hero_found %}
+  <p class="hero__placeholder">Placeholder background. Upload a photo to <code>{{ s.hero_image }}</code> to replace it.</p>
+  {%- endunless %}
+</section>
+
+{% include stats-band.html %}
+
+{%- assign robots_sorted = site.data.robots | sort: "season" | reverse -%}
+{%- assign latest_robot = robots_sorted | first -%}
+{%- if latest_robot %}
+<section class="section" aria-labelledby="latest-robot-heading">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="latest-robot-heading" class="section__title">Our latest robot</h2>
+      <a class="link-arrow" href="/robots/">All robots {% include icon.html name="arrow" %}</a>
+    </div>
+    <div class="reveal">{% include robot-card.html robot=latest_robot featured=true %}</div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--tint" aria-labelledby="recent-awards-heading">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="recent-awards-heading" class="section__title">Recent awards</h2>
+      <a class="link-arrow" href="/awards/">Full history {% include icon.html name="arrow" %}</a>
+    </div>
+    {%- comment -%} Newest season first, then the first 3 judged awards in that order. {%- endcomment -%}
+    {%- assign season_groups = site.data.awards | group_by: "season" | sort: "name" | reverse -%}
+    {%- assign shown = 0 -%}
+    <ul class="award-list reveal">
+      {%- for g in season_groups -%}
+        {%- for a in g.items -%}
+          {%- if a.type == "award" and shown < 3 -%}
+            {% include award-item.html award=a show_season=true %}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% include donate-cta.html %}
+{% include sponsor-strip.html %}

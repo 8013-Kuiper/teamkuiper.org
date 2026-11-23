@@ -1,0 +1,25 @@
+{%- assign s = site.data.site -%}
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__title">{{ s.team_name }} <span>#{{ s.team_number }}</span></p>
+      <p>{{ s.program }} team at {{ s.school }}, {{ s.location }}.</p>
+      <p><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <ul class="footer__links">
+        <li><a href="/robots/">Robots</a></li>
+        <li><a href="/awards/">Awards</a></li>
+        <li><a href="/impact/">Impact</a></li>
+        <li><a href="/support/">Support Us</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        {%- if s.social.instagram.size > 0 %}<li><a href="{{ s.social.instagram }}" rel="noopener">Instagram</a></li>{% endif -%}
+        {%- if s.social.youtube.size > 0 %}<li><a href="{{ s.social.youtube }}" rel="noopener">YouTube</a></li>{% endif -%}
+        <li><a href="{{ s.ftcscout_url }}" rel="noopener">FTCScout</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer__fine">
+    <p>&copy; {{ 'now' | date: "%Y" }} {{ s.team_name }}. Donations are processed by Hack Club, a 501(c)(3) nonprofit. This site uses no tracking or cookies.</p>
+  </div>
+</footer>

@@ -1,0 +1,14 @@
+{%- comment -%} One award row. Parameter: award (an entry from awards.yml). Icon depends on type. {%- endcomment -%}
+{%- assign a = include.award -%}
+{%- case a.type -%}
+  {%- when "award" -%}{%- assign a_icon = "trophy" -%}{%- assign a_label = "Award" -%}
+  {%- when "performance" -%}{%- assign a_icon = "bolt" -%}{%- assign a_label = "On the field" -%}
+  {%- else -%}{%- assign a_icon = "calendar" -%}{%- assign a_label = "Event" -%}
+{%- endcase -%}
+<li class="award award--{{ a.type | default: 'event' }}">
+  <span class="award__icon">{% include icon.html name=a_icon %}<span class="visually-hidden">{{ a_label }}:</span></span>
+  <div>
+    <p class="award__title">{{ a.title }}</p>
+    <p class="award__event">{{ a.event }}{% if include.show_season %} · {{ a.season }}{% endif %}</p>
+  </div>
+</li>

@@ -1,0 +1,29 @@
+{%- comment -%}
+  Safe image: shows the real photo if the file exists, otherwise a clearly labeled placeholder.
+  This means a typo in a file name (or a photo not uploaded yet) never breaks the page.
+
+  Parameters:
+    src   = path from the data file, e.g. /assets/images/robots/pluto.jpg
+    alt   = description for screen readers (falls back to fallback_alt if blank or still says TODO)
+    kind  = robot | sponsor   (which placeholder to use)
+    fallback_alt = text to use when alt is missing
+    eager = "true" for the first image on a page (skips lazy loading)
+{%- endcomment -%}
+{%- assign img_ok = false -%}
+{%- if include.src and include.src != "" -%}
+  {%- unless include.src contains "TODO" -%}
+    {%- assign img_found = site.static_files | where: "path", include.src | first -%}
+    {%- if img_found -%}{%- assign img_ok = true -%}{%- endif -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- assign img_alt = include.alt | default: "" | strip -%}
+{%- if img_alt == "" or img_alt contains "TODO" -%}
+  {%- assign img_alt = include.fallback_alt | default: "" -%}
+{%- endif -%}
+
+{%- if img_ok -%}
+<img src="{{ include.src }}" alt="{{ img_alt | escape }}" {% if include.eager != "true" %}loading="lazy" decoding="async"{% endif %}>
+{%- else -%}
+<img class="is-placeholder" src="/assets/images/placeholders/{{ include.kind | default: 'robot' }}.svg" alt="Placeholder: photo coming soon" {% if include.eager != "true" %}loading="lazy" decoding="async"{% endif %}>
+{%- endif -%}

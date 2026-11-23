@@ -1,0 +1,10 @@
+{%- comment -%}
+  Prints the team tagline. If students haven't written one yet (still says TODO or is blank),
+  prints a friendly default so the site never shows "TODO" to visitors.
+{%- endcomment -%}
+{%- assign t = site.data.site.tagline | strip -%}
+{%- if t == "" or t contains "TODO" -%}
+Student-built robots from Locust Valley, NY
+{%- else -%}
+{{ t }}
+{%- endif -%}

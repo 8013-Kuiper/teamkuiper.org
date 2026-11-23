@@ -1,0 +1,24 @@
+---
+layout: default
+title: Robots
+permalink: /robots/
+description: Every robot Team Kuiper has built, season by season, with the features and stats that made them tick.
+---
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">Season by season</p>
+    <h1>Our robots</h1>
+    <p class="page-head__lede">Designed, built and programmed by students. Newest first.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container stack">
+    {%- assign robots_sorted = site.data.robots | sort: "season" | reverse -%}
+    {%- for r in robots_sorted %}
+    <div class="reveal">{% include robot-card.html robot=r level=2 %}</div>
+    {%- endfor %}
+  </div>
+</section>
+
+{% include donate-cta.html %}

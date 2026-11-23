@@ -1,0 +1,23 @@
+{%- comment -%}
+  Wishlist progress: dollars funded vs. the season goal (site.yml: season_goal_usd).
+  If no goal is set yet, falls back to the total of all wishlist prices. If that is 0 too, nothing is shown.
+{%- endcomment -%}
+{%- assign wish_all = site.data.wishlist -%}
+{%- assign funded_total = 0 -%}
+{%- assign wish_total = 0 -%}
+{%- for w in wish_all -%}
+  {%- assign wish_total = wish_total | plus: w.price -%}
+  {%- if w.funded -%}{%- assign funded_total = funded_total | plus: w.price -%}{%- endif -%}
+{%- endfor -%}
+{%- assign goal = site.data.site.season_goal_usd | default: 0 -%}
+{%- assign goal_label = "season goal" -%}
+{%- if goal == 0 -%}{%- assign goal = wish_total -%}{%- assign goal_label = "wishlist total" -%}{%- endif -%}
+{%- if goal > 0 -%}
+  {%- assign pct = funded_total | times: 100 | divided_by: goal | at_most: 100 -%}
+  <div class="progress">
+    <p class="progress__label"><strong>{% include money.html amount=funded_total %}</strong> funded of our {% include money.html amount=goal %} {{ goal_label }}</p>
+    <div class="progress__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" aria-label="Fundraising progress">
+      <div class="progress__fill" style="width: {{ pct }}%"></div>
+    </div>
+  </div>
+{%- endif -%}

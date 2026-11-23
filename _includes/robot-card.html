@@ -1,0 +1,34 @@
+{%- comment -%} One robot season. Parameters: robot (an entry from robots.yml), level (heading level, default 3), featured. {%- endcomment -%}
+{%- assign r = include.robot -%}
+{%- assign robot_name = r.name -%}
+{%- if robot_name contains "TODO" or robot_name == blank -%}
+  {%- assign robot_name = r.game | default: "Season" | append: " robot" -%}
+{%- endif -%}
+{%- capture fallback_alt %}{{ robot_name }}, Team Kuiper's {{ r.season }} robot{% endcapture -%}
+<article class="robot-card{% if include.featured %} robot-card--featured{% endif %}">
+  <div class="robot-card__media">
+    {% include image.html src=r.image alt=r.alt fallback_alt=fallback_alt kind="robot" %}
+  </div>
+  <div class="robot-card__body">
+    <p class="eyebrow">{{ r.season }}{% if r.game %} · {{ r.game }}{% endif %}</p>
+    {%- assign hl = include.level | default: 3 %}
+    <h{{ hl }}>{{ robot_name }}</h{{ hl }}>
+    {%- if r.summary %}<p class="robot-card__summary">{{ r.summary | strip }}</p>{% endif -%}
+
+    {%- if r.highlights and r.highlights.size > 0 %}
+    <ul class="checklist">
+      {%- for h in r.highlights %}
+      <li>{% include icon.html name="check" %}<span>{{ h }}</span></li>
+      {%- endfor %}
+    </ul>
+    {%- endif -%}
+
+    {%- if r.stats and r.stats.size > 0 %}
+    <dl class="stat-chips">
+      {%- for st in r.stats %}
+      <div class="stat-chip"><dt>{{ st.label }}</dt><dd>{{ st.value }}</dd></div>
+      {%- endfor %}
+    </dl>
+    {%- endif %}
+  </div>
+</article>

@@ -1,0 +1,15 @@
+{%- assign stat_list = site.data.impact.stats -%}
+{%- if stat_list and stat_list.size > 0 -%}
+<section class="stats-band" aria-label="Our impact in numbers">
+  <div class="container">
+    <dl class="stats-grid">
+      {%- for st in stat_list %}
+      <div class="stat reveal">
+        <dt>{{ st.label }}</dt>
+        <dd>{{ st.number }}</dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+{%- endif -%}

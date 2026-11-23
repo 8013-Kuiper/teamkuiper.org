@@ -1,0 +1,35 @@
+---
+layout: default
+title: Awards
+permalink: /awards/
+description: Team Kuiper's competition awards and results, season by season.
+---
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">Competition history</p>
+    <h1>Awards</h1>
+    <p class="page-head__lede">Judged awards, alliance wins and the events we've shown up to, newest season first.</p>
+    <p class="page-head__links">
+      <a href="{{ site.data.site.ftcscout_url }}" rel="noopener">Live stats on FTCScout {% include icon.html name="external" %}</a>
+      <a href="{{ site.data.site.first_events_url }}" rel="noopener">Official results on FIRST {% include icon.html name="external" %}</a>
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container timeline-wrap">
+    {%- assign season_groups = site.data.awards | group_by: "season" | sort: "name" | reverse -%}
+    {%- for g in season_groups %}
+    <section class="season reveal" aria-labelledby="season-{{ g.name | slugify }}">
+      <h2 class="season__title" id="season-{{ g.name | slugify }}">{{ g.name }}</h2>
+      <ul class="award-list award-list--timeline">
+        {%- for a in g.items %}
+        {% include award-item.html award=a %}
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endfor %}
+  </div>
+</section>
+
+{% include donate-cta.html %}

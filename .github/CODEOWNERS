@@ -1,0 +1,12 @@
+# Who must approve changes. Because `main` is protected with "Require review from Code Owners",
+# every pull request needs an approval from someone on this team before it can be merged.
+#
+# TODO: create this GitHub team (Organization -> Teams) with the captains and mentors,
+#       give it write access to this repo, then replace the placeholder below.
+*  @team-kuiper/website-approvers
+
+# Example of tighter rules: only mentors can change the site's code (students edit _data/ and photos).
+# /_layouts/  @team-kuiper/mentors
+# /_includes/ @team-kuiper/mentors
+# /assets/css/ @team-kuiper/mentors
+# /.github/   @team-kuiper/mentors

@@ -1,0 +1,69 @@
+name: Shrink photos
+
+# When a pull request adds or changes photos, this:
+#   1. scales any photo wider than 2000px down to 2000px (and fixes phone-camera rotation)
+#   2. compresses JPG/PNG/WebP files with calibreapp/image-actions
+#   3. pushes the smaller files back onto the same branch
+# So students can upload straight from a phone and the site stays fast.
+on:
+  pull_request:
+    paths:
+      - "assets/images/**"
+
+permissions:
+  contents: write        # to push the smaller images back to the branch
+  pull-requests: write   # to leave a "saved X KB" comment
+  actions: write         # to re-run the data check on the new commit (see last step)
+
+jobs:
+  shrink:
+    name: Resize and compress
+    # Only for branches in this repo (fork PRs can't be pushed to).
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Scale big photos down to 2000px wide
+        run: |
+          # Only the pictures this PR added or changed.
+          git diff --name-only --diff-filter=AM "origin/${{ github.base_ref }}...HEAD" -- 'assets/images/**' \
+            | grep -iE '\.(jpe?g|png|webp)$' > changed.txt || true
+          while IFS= read -r f; do
+            [ -f "$f" ] || continue
+            # '2000x2000>' = shrink only if larger; never enlarge. -strip removes GPS/location data.
+            mogrify -auto-orient -strip -resize '2000x2000>' "$f"
+          done < changed.txt
+          rm -f changed.txt
+
+      - name: Compress
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          compressOnly: true   # commit the smaller files instead of just commenting
+          jpegQuality: "80"
+          pngQuality: "80"
+          webpQuality: "80"
+
+      - name: Save the resized files, if anything changed
+        id: save
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A assets/images
+            git commit -m "chore(images): resize and compress photos"
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Commits pushed with the built-in token don't start new checks, which would leave the
+      # required "Validate data files" check waiting forever. Starting it by hand fixes that.
+      - name: Re-run the data check on the new commit
+        if: steps.save.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run validate-data.yml --ref "${{ github.head_ref }}"

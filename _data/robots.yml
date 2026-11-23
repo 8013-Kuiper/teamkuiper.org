@@ -1,0 +1,24 @@
+# Newest first. Put photos in assets/images/robots/
+# Required: season, name, image, alt   (alt = a short description for screen readers)
+# Optional: game, summary, highlights (list), stats (list of label/value)
+- season: 2025-26
+  game: DECODE          # verify
+  name: "TODO: robot name"
+  image: /assets/images/robots/TODO.jpg
+  alt: "TODO: describe the photo, e.g. Our 2025-26 robot with its turret raised"
+  summary: >
+    A simplified design with a focus on programming.
+  highlights:
+    - Auto-aiming turret that tracks AprilTags and adjusts to the robot's position on the field
+    - Flywheel that sets its speed from field positional tracking within the shoot zones
+    - Limelight vision
+- season: 2024-25
+  game: INTO THE DEEP   # verify
+  name: Pluto
+  image: /assets/images/robots/TODO.jpg
+  alt: "TODO: describe the photo, e.g. Pluto, our 2024-25 robot, at the Long Island Championship"
+  summary: >
+    An absolute powerhouse on the field — our best robot in recent history.
+  stats:
+    - label: npAVG
+      value: "161.40"

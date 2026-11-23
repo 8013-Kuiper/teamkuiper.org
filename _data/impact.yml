@@ -1,0 +1,19 @@
+stats:
+  - number: "7"
+    label: FIRST LEGO League teams mentored
+  - number: "43"
+    label: FTC teams per qualifier weekend we host
+  - number: "4"
+    label: years hosting Long Island FTC qualifiers
+items:
+  - title: Hosting Long Island FTC Qualifiers
+    text: >
+      For the past four years Locust Valley has hosted qualifying tournaments for
+      Long Island FTC, with 43 teams attending each weekend.
+  - title: Locust Valley Robotics Night
+    text: >
+      Every year we introduce younger students to FIRST. Since it started, Locust
+      Valley FLL teams have grown from two to seven.
+  - title: New York International Auto Show
+    text: >
+      Exhibiting April 3–12, 2026 to show what we can do and bring new people into FIRST.

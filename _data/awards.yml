@@ -1,0 +1,143 @@
+# Newest first. Copy a block, change the text, done.
+# type: award | performance | event
+#   award       = a judged award or trophy (Inspire, Reach, Design, ...)
+#   performance = on-field results (Winning Alliance, Undefeated, Top Ranked)
+#   event       = something we took part in that isn't a competition
+#
+# Source for past seasons: https://ftc-events.firstinspires.org/team/8013
+# (The FIRST site labels a season by the year it STARTS: "2025" = 2025-26.)
+# Entries marked "verify" came from the old Google Site, not the FIRST site.
+
+# ---------- 2025-26 (DECODE) ----------
+- title: Inspire Award — 3rd Place
+  event: "Long Island Championship"
+  season: "2025-26"
+  type: award
+- title: Winning Alliance — "We're going to Premiers!"   # verify
+  event: "Long Island Championship"
+  season: "2025-26"
+  type: performance
+- title: Reach Award
+  event: "Long Island Qualifier #3"
+  season: "2025-26"
+  type: award
+- title: Inspire Award — 1st Place
+  event: "Long Island Qualifier #2"
+  season: "2025-26"
+  type: award
+- title: Undefeated   # verify
+  event: "Long Island Qualifier #2"
+  season: "2025-26"
+  type: performance
+- title: Reach Award
+  event: "Long Island Qualifier #1"
+  season: "2025-26"
+  type: award
+- title: Undefeated   # verify
+  event: "Long Island Qualifier #1"
+  season: "2025-26"
+  type: performance
+- title: Exhibitor
+  event: "New York International Auto Show (Apr 3–12, 2026)"
+  season: "2025-26"
+  type: event
+
+# ---------- 2024-25 (INTO THE DEEP) ----------
+- title: Design Award
+  event: "Long Island Championship"
+  season: "2024-25"
+  type: award
+- title: Winning Alliance — 1st Team Selected
+  event: "Long Island Championship"
+  season: "2024-25"
+  type: performance
+- title: Control Award
+  event: "Long Island Qualifier #2"
+  season: "2024-25"
+  type: award
+- title: Winning Alliance — Captain
+  event: "Long Island Qualifier #2"
+  season: "2024-25"
+  type: performance
+- title: Innovate Award (sponsored by RTX)
+  event: "Long Island Qualifier #1"
+  season: "2024-25"
+  type: award
+- title: Winning Alliance — 1st Team Selected
+  event: "Long Island Qualifier #1"
+  season: "2024-25"
+  type: performance
+
+# ---------- 2023-24 (CENTERSTAGE) ----------
+- title: Think Award — 3rd Place
+  event: "Long Island Qualifier #5"
+  season: "2023-24"
+  type: award
+- title: Winning Alliance — 1st Team Selected
+  event: "Long Island Qualifier #4"
+  season: "2023-24"
+  type: performance
+
+# ---------- 2022-23 (POWERPLAY) ----------
+- title: Compass Award — 2nd Place
+  event: "Long Island Championship"
+  season: "2022-23"
+  type: award
+- title: Control Award (sponsored by Arm) — 2nd Place
+  event: "Long Island Championship"
+  season: "2022-23"
+  type: award
+- title: Design Award
+  event: "Long Island Qualifier #4 (Remote)"
+  season: "2022-23"
+  type: award
+- title: Innovate Award (sponsored by Raytheon Technologies) — 3rd Place
+  event: "Long Island Qualifier #4 (Remote)"
+  season: "2022-23"
+  type: award
+- title: Innovate Award (sponsored by Raytheon Technologies)
+  event: "Long Island Qualifier #3"
+  season: "2022-23"
+  type: award
+- title: Winning Alliance — 2nd Team Selected
+  event: "Long Island Qualifier #3"
+  season: "2022-23"
+  type: performance
+- title: Innovate Award (sponsored by Raytheon Technologies) — 3rd Place
+  event: "Long Island Qualifier #2"
+  season: "2022-23"
+  type: award
+
+# ---------- 2021-22 (FREIGHT FRENZY) ----------
+- title: Control Award (sponsored by Arm)
+  event: "Long Island Qualifier #1"
+  season: "2021-22"
+  type: award
+- title: Inspire Award — 3rd Place
+  event: "Long Island Qualifier #1"
+  season: "2021-22"
+  type: award
+- title: Top Ranked — 2nd Place
+  event: "Long Island Qualifier #1"
+  season: "2021-22"
+  type: performance
+- title: Top Ranked — 5th Place
+  event: "Long Island Qualifier #4"
+  season: "2021-22"
+  type: performance
+
+# ---------- 2020-21 (ULTIMATE GOAL, remote season) ----------
+- title: Design Award — 2nd Place
+  event: "Long Island Championship (Remote)"
+  season: "2020-21"
+  type: award
+- title: Think Award — 3rd Place
+  event: "Long Island Qualifier #3-A (Remote)"
+  season: "2020-21"
+  type: award
+
+# ---------- 2019-20 (SKYSTONE) ----------
+- title: Winning Alliance — Captain
+  event: "Long Island Qualifier #3"
+  season: "2019-20"
+  type: performance

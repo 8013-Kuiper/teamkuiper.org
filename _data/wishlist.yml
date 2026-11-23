@@ -1,0 +1,17 @@
+# What we need this season. Update "funded" when an item is paid for.
+# priority: high | medium | low
+# THESE ARE EXAMPLES — replace with the team's real list and prices.
+- item: "EXAMPLE: goBILDA motor (x4)"
+  vendor: goBILDA
+  url: https://www.gobilda.com/
+  price: 0        # TODO
+  priority: high
+  funded: false
+  why: "Drivetrain upgrade"
+- item: "EXAMPLE: Competition registration fee"
+  vendor: FIRST
+  url: https://www.firstinspires.org/
+  price: 0        # TODO
+  priority: high
+  funded: false
+  why: "Lets us compete this season"

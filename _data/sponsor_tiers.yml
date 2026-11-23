@@ -1,0 +1,24 @@
+# Each tier includes all perks of the tiers below it.
+note: T-shirts are printed at most once a year.
+tiers:
+  - name: Friend
+    min: 20
+    perks: [Team acknowledgement]
+  - name: Friend Plus
+    min: 100
+    perks: [Name on website]
+  - name: Bronze
+    min: 200
+    perks: [Small logo on robot]
+  - name: Silver
+    min: 500
+    perks: [Logo on website with link, Logo on team t-shirt]
+  - name: Gold
+    min: 1000
+    perks: [Social media appearances]
+  - name: Emerald
+    min: 1500
+    perks: [Large logo on robot and competition booth, More social media posts, Top of sponsors list]
+  - name: Diamond
+    min: 3000
+    perks: [Large banner on competition booth, Centered logo on robot, Most or all social posts, Advertising at two hosted events per year, Title rights (first come first served)]

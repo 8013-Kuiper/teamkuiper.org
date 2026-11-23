@@ -1,0 +1,7 @@
+# Add sponsors here. tier must match a name in sponsor_tiers.yml.
+# Logos go in assets/images/sponsors/
+# - name: Example Company
+#   tier: Gold
+#   logo: /assets/images/sponsors/example.png
+#   url: https://example.com
+[]

@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects: old Google Sites addresses -> new pages.
+# Format: /old-path  /new-path  status-code
+/home                /              301
+/about/robots        /robots/       301
+/about/impact        /impact/       301
+/about/competition   /awards/       301
+/sponsors/donate     /support/      301
+/sponsors/sponsors   /support/      301

@@ -1,0 +1,237 @@
+# Pages CMS configuration  (https://pagescms.org/docs/)
+# This gives students friendly forms for every file in _data/ plus photo upload.
+# If you add a new field to a _data file, add it here too so the form shows it.
+
+settings:
+  content:
+    merge: true          # keep any field the form doesn't know about instead of deleting it
+  commit:
+    templates:           # conventional-commit style messages
+      create: "content(create): {path}"
+      update: "content(update): {path}"
+      delete: "content(delete): {path}"
+      rename: "content(rename): {oldPath} -> {newPath}"
+
+media:
+  - name: robots
+    label: Robot photos
+    input: assets/images/robots
+    output: /assets/images/robots
+    categories: [image]
+    rename: safe
+  - name: sponsors
+    label: Sponsor logos
+    input: assets/images/sponsors
+    output: /assets/images/sponsors
+    extensions: [png, jpg, jpeg, webp, svg]
+    rename: safe
+  - name: site
+    label: Site photos (home page hero)
+    input: assets/images
+    output: /assets/images
+    categories: [image]
+    rename: safe
+
+content:
+  # ---------------------------------------------------------------- Awards
+  - name: awards
+    label: Awards
+    type: file
+    path: _data/awards.yml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Award or result
+        type: string
+        required: true
+        description: "Example: Inspire Award — 1st Place"
+      - name: event
+        label: Event
+        type: string
+        required: true
+        description: "Example: Long Island Qualifier #2"
+      - name: season
+        label: Season
+        type: string
+        required: true
+        description: "Format: 2025-26"
+        pattern:
+          regex: "^\\d{4}-\\d{2}$"
+          message: "Use the format 2025-26"
+      - name: type
+        label: Kind of entry
+        type: select
+        required: true
+        options:
+          values:
+            - { name: award, label: "Award (judged trophy)" }
+            - { name: performance, label: "On the field (winning alliance, undefeated...)" }
+            - { name: event, label: "Event we took part in" }
+
+  # ---------------------------------------------------------------- Robots
+  - name: robots
+    label: Robots
+    type: file
+    path: _data/robots.yml
+    format: yaml
+    list: true
+    fields:
+      - name: season
+        type: string
+        required: true
+        description: "Format: 2025-26"
+        pattern:
+          regex: "^\\d{4}-\\d{2}$"
+          message: "Use the format 2025-26"
+      - name: game
+        label: Game name
+        type: string
+        description: "Example: DECODE"
+      - name: name
+        label: Robot name
+        type: string
+        required: true
+      - name: image
+        label: Photo
+        type: image
+        required: true
+        options:
+          media: robots
+      - name: alt
+        label: Photo description (for people who can't see it)
+        type: string
+        required: true
+        description: "Describe what is in the photo. Example: Pluto, our 2024-25 robot, holding a sample."
+      - name: summary
+        type: text
+      - name: highlights
+        label: Highlights
+        type: string
+        list: true
+      - name: stats
+        label: Stats
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - { name: label, type: string, required: true }
+          - { name: value, type: string, required: true }
+
+  # ---------------------------------------------------------------- Impact
+  - name: impact
+    label: Impact
+    type: file
+    path: _data/impact.yml
+    format: yaml
+    fields:
+      - name: stats
+        label: Big numbers
+        type: object
+        list: true
+        fields:
+          - { name: number, type: string, required: true, description: "Write it in quotes if it's just digits. Example: 7" }
+          - { name: label, type: string, required: true }
+      - name: items
+        label: Outreach and community work
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - { name: title, type: string, required: true }
+          - { name: text, type: text, required: true }
+
+  # -------------------------------------------------------------- Wishlist
+  - name: wishlist
+    label: Wishlist
+    type: file
+    path: _data/wishlist.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: item, label: Item, type: string, required: true }
+      - { name: vendor, type: string }
+      - { name: url, label: Link to the item, type: string, description: "Must start with https://" }
+      - { name: price, label: Price in US dollars, type: number, required: true }
+      - name: priority
+        type: select
+        required: true
+        options:
+          values: [high, medium, low]
+      - { name: funded, label: Already paid for?, type: boolean }
+      - { name: why, label: Why we need it, type: string }
+
+  # ------------------------------------------------------------- Sponsors
+  - name: sponsors
+    label: Sponsors
+    type: file
+    path: _data/sponsors.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: name, type: string, required: true }
+      - name: tier
+        type: select
+        required: true
+        description: "If tiers are renamed in 'Sponsor tiers', update this list in .pages.yml too."
+        options:
+          values: [Friend, Friend Plus, Bronze, Silver, Gold, Emerald, Diamond]
+      - name: logo
+        type: image
+        options:
+          media: sponsors
+      - { name: url, label: Sponsor website, type: string, description: "Must start with https://" }
+
+  # -------------------------------------------------------- Sponsor tiers
+  - name: sponsor_tiers
+    label: Sponsor tiers (ask a captain first)
+    type: file
+    path: _data/sponsor_tiers.yml
+    format: yaml
+    fields:
+      - { name: note, type: string }
+      - name: tiers
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - { name: name, type: string, required: true }
+          - { name: min, label: Minimum gift (US dollars), type: number, required: true }
+          - { name: perks, type: string, list: true, required: true }
+
+  # ------------------------------------------------------------ Site info
+  - name: site
+    label: Site info (ask a captain first)
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - { name: team_name, type: string, required: true }
+      - { name: team_number, type: number, required: true }
+      - { name: program, type: string }
+      - { name: school, type: string }
+      - { name: location, type: string }
+      - { name: email, type: string, required: true, description: "Use a team address like info@teamkuiper.org, never a personal one." }
+      - { name: tagline, type: string, description: "One short, punchy line shown on the home page." }
+      - { name: donate_url, type: string, required: true }
+      - { name: ftcscout_url, type: string }
+      - { name: first_events_url, type: string }
+      - name: hero_image
+        label: Home page background photo
+        type: image
+        options:
+          media: site
+      - { name: hero_alt, label: Home photo description, type: string }
+      - name: social
+        type: object
+        fields:
+          - { name: instagram, type: string, description: "Full link, or leave blank to hide" }
+          - { name: youtube, type: string, description: "Full link, or leave blank to hide" }
+      - { name: season_goal_usd, label: Season fundraising goal (US dollars), type: number }
+      - name: check_donations
+        label: Check donation details
+        type: object
+        fields:
+          - { name: payable_to, type: string }
+          - { name: mail_to, type: text }
+          - { name: note, type: string }

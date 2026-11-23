@@ -1,0 +1,33 @@
+# Site settings for the Jekyll build. Students: you do NOT need to edit this file.
+# Team info (email, tagline, donate link...) lives in _data/site.yml.
+
+title: Team Kuiper 8013
+description: >-
+  Team Kuiper is FIRST Tech Challenge team #8013 from Locust Valley High School, NY.
+  See our robots, awards and community work, and help us compete.
+url: https://teamkuiper.org
+baseurl: ""
+lang: en
+timezone: America/New_York
+
+permalink: pretty
+markdown: kramdown
+
+plugins:
+  - jekyll-sitemap
+
+# Jekyll skips files that start with "_", so list _redirects explicitly (Cloudflare Pages reads it).
+include:
+  - _redirects
+
+# Things that are for mentors/developers, not part of the website.
+exclude:
+  - README.md
+  - EDITING.md
+  - CLAUDE_CODE_KICKOFF.md
+  - scripts
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - .github

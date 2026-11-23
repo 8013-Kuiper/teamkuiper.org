@@ -1,11 +1,10 @@
 # Newest first. Put photos in assets/images/robots/
-# Required: season, name, image, alt   (alt = a short description for screen readers)
-# Optional: game, summary, highlights (list), stats (list of label/value)
+# Required: season, image, alt   (alt = a short description for screen readers)
+# Optional: name (if there isn't one, the page shows "<game> robot"), game, summary, highlights (list), stats (list of label/value)
 - season: 2025-26
-  game: DECODE          # verify
-  name: "TODO: robot name"
-  image: /assets/images/robots/TODO.jpg
-  alt: "TODO: describe the photo, e.g. Our 2025-26 robot with its turret raised"
+  game: DECODE
+  image: /assets/images/robots/decode-2025-26.jpg
+  alt: "Team Kuiper's 2025-26 DECODE robot: a black mecanum-wheeled robot with a number plate reading 8013, a camera-topped turret, and green and purple game balls"
   summary: >
     A simplified design with a focus on programming.
   highlights:
@@ -13,10 +12,10 @@
     - Flywheel that sets its speed from field positional tracking within the shoot zones
     - Limelight vision
 - season: 2024-25
-  game: INTO THE DEEP   # verify
+  game: INTO THE DEEP
   name: Pluto
-  image: /assets/images/robots/TODO.jpg
-  alt: "TODO: describe the photo, e.g. Pluto, our 2024-25 robot, at the Long Island Championship"
+  image: /assets/images/robots/pluto.png
+  alt: "Pluto, our 2024-25 robot, at the Long Island Championship"
   summary: >
     An absolute powerhouse on the field — our best robot in recent history.
   stats:

@@ -5,19 +5,19 @@ program: FIRST Tech Challenge
 school: Locust Valley High School
 location: Locust Valley, NY
 email: info@teamkuiper.org
-tagline: "TODO: one-line team tagline (students write this!)"
+tagline: "We design, build, and program competitive robots while inspiring STEM."
 donate_url: https://hcb.hackclub.com/donations/start/team-kuiper-8013
 ftcscout_url: https://ftcscout.org/teams/8013
 first_events_url: https://ftc-events.firstinspires.org/team/8013
 # Big photo behind the home page title. Upload a wide landscape JPG, e.g. 1920x1080.
 # Until the file exists, the home page shows a starfield instead.
 hero_image: /assets/images/hero.jpg
-hero_alt: "TODO: describe the photo, e.g. Team Kuiper members with the robot at the Long Island Championship"
+hero_alt: "Locust Valley Robotics Team Kuiper members with the robot at the Long Island Championship"
 social:
   instagram: ""   # TODO: full URL, or leave blank to hide
   youtube: ""
 # Season fundraising goal shown on the wishlist progress bar
-season_goal_usd: 0   # TODO
+season_goal_usd: 1000   # TODO
 # Check donations (from the current Donate page — verify wording with the team)
 check_donations:
   payable_to: Hack Club / The Hack Foundation

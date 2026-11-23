@@ -91,7 +91,7 @@ content:
       - name: name
         label: Robot name
         type: string
-        required: true
+        description: "Optional. Leave blank if the robot was never named. The page will show the game name instead."
       - name: image
         label: Photo
         type: image

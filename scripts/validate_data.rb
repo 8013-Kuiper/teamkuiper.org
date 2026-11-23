@@ -177,7 +177,8 @@ def check_robots
     where = "item #{i + 1} #{label(r, %w[name season])}"
     s = need_text(f, where, r, "season", "season: 2025-26")
     error(f, where, "`season` should look like 2025-26 (got: #{s}).") if s && s !~ SEASON
-    need_text(f, where, r, "name", "name: Pluto")
+    # `name` is optional: a robot we never named just shows its game, e.g. "DECODE robot".
+    error(f, where, "`name` is empty. Either type a name or delete the whole `name:` line.") if r.key?("name") && blank?(r["name"])
     img = need_text(f, where, r, "image", "image: /assets/images/robots/pluto.jpg")
     need_image_file(f, where, img, "robots")
     need_text(f, where, r, "alt", "alt: \"Pluto, our 2024-25 robot, on the field\"")

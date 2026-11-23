@@ -1,8 +1,13 @@
 {%- comment -%} One robot season. Parameters: robot (an entry from robots.yml), level (heading level, default 3), featured. {%- endcomment -%}
 {%- assign r = include.robot -%}
-{%- assign robot_name = r.name -%}
-{%- if robot_name contains "TODO" or robot_name == blank -%}
-  {%- assign robot_name = r.game | default: "Season" | append: " robot" -%}
+{%- comment -%} `name` is optional. Unnamed robots are titled by their game ("DECODE robot"), or "Our robot" if there is no game either. {%- endcomment -%}
+{%- assign robot_name = r.name | append: "" | strip -%}
+{%- if robot_name.size == 0 or robot_name contains "TODO" -%}
+  {%- if r.game and r.game.size > 0 -%}
+    {%- assign robot_name = r.game | append: " robot" -%}
+  {%- else -%}
+    {%- assign robot_name = "Our robot" -%}
+  {%- endif -%}
 {%- endif -%}
 {%- capture fallback_alt %}{{ robot_name }}, Team Kuiper's {{ r.season }} robot{% endcapture -%}
 <article class="robot-card{% if include.featured %} robot-card--featured{% endif %}">

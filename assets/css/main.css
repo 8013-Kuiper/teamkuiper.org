@@ -195,7 +195,7 @@ ul { padding: 0; margin: 0; list-style: none; }
 
 /* ---------- Robot cards ---------- */
 .robot-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: grid; }
-.robot-card__media { aspect-ratio: 3 / 2; background: var(--space-900); }
+.robot-card__media { aspect-ratio: 5 / 4; background: var(--space-900); }
 .robot-card__media img { width: 100%; height: 100%; object-fit: cover; }
 .robot-card__body { padding: 1.5rem; }
 .robot-card__body h2, .robot-card__body h3 { font-size: 1.75rem; }
